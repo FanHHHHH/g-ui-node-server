@@ -1,0 +1,16 @@
+{
+  "name": "upload-server",
+  "version": "0.0.1",
+  "description": "nodejs写的图片上传服务器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leo",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  }
+}
