@@ -6,7 +6,9 @@ const upload = multer({ dest: 'uploads/' })
 const app = express()
 
 app.options('/upload', cors())
-
+app.get('/', (req, res) => {
+    res.send('hello nodejs')
+})
 app.post('/upload', cors(), upload.single('file'), (req, res) => {
   res.send(req.file.filename)
 })
