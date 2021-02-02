@@ -7,10 +7,13 @@ const app = express()
 
 app.options('/upload', cors())
 app.get('/', (req, res) => {
-    res.send('hello nodejs')
+  res.send('hello nodejs')
 })
 app.post('/upload', cors(), upload.single('file'), (req, res) => {
-  res.send(req.file.filename)
+  let object = { id: req.file.filename }
+  // 安全写法
+  // 序列化
+  res.send(JSON.stringify(object))
 })
 app.get('/preview/:key', cors(), (req, res) => {
   // 遍历获取文件
@@ -23,8 +26,12 @@ app.get('/preview/:key', cors(), (req, res) => {
       },
     },
     (error) => {
-      console.log(error)
-      //   res.status(404).send('file not fount')
+      if (error) {
+        console.log(error)
+        res.status(404).send('file not found')
+      } else {
+        console.log('success, file:' + req.params.key)
+      }
     }
   )
 })
